@@ -1,0 +1,25 @@
+{
+  "name": "musichub",
+  "version": "0.1.0",
+  "description": "A powerful online & offline music player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittleYe233/MusicHub.git"
+  },
+  "keywords": [
+    "music",
+    "web",
+    "expressjs",
+    "player"
+  ],
+  "author": "LittleYe233",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LittleYe233/MusicHub/issues"
+  },
+  "homepage": "https://github.com/LittleYe233/MusicHub#readme"
+}
