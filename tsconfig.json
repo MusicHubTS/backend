@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": ".",
     "module": "commonjs",
     "target": "esnext",
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
@@ -26,9 +27,13 @@
       "ESNext.AsyncIterable"
     ],
     "typeRoots": [
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./typings"
     ]
   },
+  "include": [
+    "**/*"
+  ],
   "exclude": [
     "node_modules",
     "./public",
