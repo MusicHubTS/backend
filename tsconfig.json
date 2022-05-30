@@ -21,6 +21,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "lib": [
       "es7",
       "dom",
@@ -32,13 +33,14 @@
     ]
   },
   "include": [
-    "**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "./public",
     "dist",
-    "test"
+    "test",
+    "./typings"
   ],
   "linterOptions": {
     "exclude": []
