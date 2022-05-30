@@ -32,7 +32,7 @@ node_modules
 *.log
 
 # Typings
-typings/
+#typings/
 
 # Typescript
 src/**/*.js
