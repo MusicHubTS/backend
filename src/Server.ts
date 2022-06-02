@@ -51,7 +51,15 @@ import * as pages from './controllers/pages';
   },
   exclude: [
     '**/*.spec.ts'
-  ]
+  ],
+  statics: {
+    '/static': [
+      {
+        root: './public',
+        index: false
+      }
+    ]
+  }
 })
 export class Server {
   @Inject()
