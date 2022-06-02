@@ -58,7 +58,7 @@ $ npm run start:prod
 
 ## Docker
 
-```
+```bash
 # build docker image
 docker compose build
 
@@ -96,6 +96,9 @@ Edit `.barreslby.json` to customize it:
   - [ ] Local management
   - [ ] Download/Upload
 - [ ] Plugins/Addons
+  - [ ] Music API
+    - [ ] NetEase Cloud Music
+    - [ ] YouTube Music
 - [ ] Themes
 
 ## Branches
