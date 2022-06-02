@@ -1,6 +1,7 @@
 import {readFileSync} from 'fs';
 import {envs} from './envs';
 import loggerConfig from './logger';
+import * as projectConfig from './project';
 const pkg = JSON.parse(readFileSync('./package.json', {encoding: 'utf8'}));
 
 export const config: Partial<TsED.Configuration> = {
@@ -8,4 +9,5 @@ export const config: Partial<TsED.Configuration> = {
   envs,
   logger: loggerConfig,
   // additional shared configuration
+  project: projectConfig
 };
