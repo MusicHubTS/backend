@@ -27,7 +27,7 @@ It supports (or will support) plugins/addons for many other music platforms and 
 
 ## Getting started
 
-### NPM (recommended)
+### Source (recommended)
 
 > **Important!** Ts.ED requires Node >= 14, Express >= 4 and TypeScript >= 4.
 
@@ -65,6 +65,10 @@ $ npm run start
 $ npm run build
 $ npm run start:prod
 ```
+
+### NPM
+
+**Note: The package has been published to NPM, but is not fully tested. It's just a placeholder.**
 
 ### Docker
 
@@ -124,6 +128,10 @@ Edit `.barreslby.json` to customize it:
 ## Contribution
 
 Lacking enough public details of this project like code styles and specifications, it's better for you to provide with bug reports and feature requests in [Issue](https://github.com/LittleYe233/MusicHub/issues) page at present.
+
+## Changelog
+
+[CHANGELOG.md](/CHANGELOG.md)
 
 ## License
 
