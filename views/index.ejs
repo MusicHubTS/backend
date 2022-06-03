@@ -5,7 +5,20 @@
     <title>Home | MusicHub hosted by <%- server.owner %></title>
   </head>
   <body>
-    <h1 style="text-align: center">MusicHub Homepage</h1>
+    <style>
+      * {
+        --musichub-heading-height: 47px;
+        --musichub-aplayer-height: 66px;
+      }
+    </style>
+    <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 0 0;">MusicHub Homepage</h1>
+    <div style="display: flex;align-content: center; justify-content: center; overflow-y: scroll; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.88);">
+      <div class="lobby" style="width: 80%; max-width: 80%;">
+        <h2 style="margin: 0 0 0 0">Playlist</h2>
+        <div>
+        </div>
+      </div>
+    </div>
     <div id="aplayer"></div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
