@@ -27,6 +27,8 @@ It supports (or will support) plugins/addons for many other music platforms and 
 
 ## Getting started
 
+### NPM (recommended)
+
 > **Important!** Ts.ED requires Node >= 14, Express >= 4 and TypeScript >= 4.
 
 For Linux/OS X users, open your terminal and clone this repo:
@@ -56,7 +58,9 @@ $ npm run build
 $ npm run start:prod
 ```
 
-## Docker
+### Docker
+
+**Note: It's just a default method for running Ts.ED projects. It's not fully tested for this one. It's still recommended to use traditional NPM method.**
 
 ```bash
 # build docker image
@@ -66,7 +70,9 @@ docker compose build
 docker compose up
 ```
 
-## Barrelsby
+## Barrelsby (currently disabled)
+
+**It's currently disabled. See commit [54a3b8b1982cacf73c994e6cabcfd0928b3b4a38](https://github.com/LittleYe233/MusicHub/commit/54a3b8b1982cacf73c994e6cabcfd0928b3b4a38) and issue [#1](https://github.com/LittleYe233/MusicHub/issues/1).**
 
 This project uses [barrelsby](https://www.npmjs.com/package/barrelsby) to generate index files to import the controllers.
 
@@ -83,7 +89,7 @@ Edit `.barreslby.json` to customize it:
     "__mocks__",
     ".spec.ts"
   ],
-  "delete": true
+  "delete": false
 }
 ```
 
