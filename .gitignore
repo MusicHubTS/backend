@@ -57,3 +57,5 @@ test/**/*.js.map
 .env.development
 
 package-lock.json
+
+config.yml
