@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" />
     <title>Home | MusicHub hosted by <%- server.owner %></title>
   </head>
   <body>
     <h1 style="text-align: center">MusicHub Homepage</h1>
     <div id="aplayer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
     <script>
-      const ap = new APlayer({
-        container: document.getElementById('aplayer'),
-        fixed: true,
-        autoplay: false,
-        theme: '#FADFA3',
-        preload: 'auto',
-        volume: 0.7,
-        mutex: true,
-        audio: [{
-          name: '光るなら',
-          artist: 'Goose House',
-          url: '/static/songs/hikarunara.mp3',
-          cover: '',
-          lrc: ''
-        }]
-      });
+      var songsConfig = null;
+      (async () => {
+        try {
+          songsConfig = await $.ajax({
+            url: '/rest/get-config/songs',
+            dataType: 'json'
+          });
+        } catch (e) {
+          console.error('Failed to get config of songs:', e);
+        }
+        const ap = new APlayer({
+          container: document.getElementById('aplayer'),
+          fixed: true,
+          autoplay: false,
+          theme: '#FADFA3',
+          preload: 'auto',
+          volume: 0.7,
+          mutex: true,
+          audio: songsConfig
+        });
+      })();
     </script>
   </body>
 </html>
