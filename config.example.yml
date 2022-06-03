@@ -1,0 +1,14 @@
+server:
+  owner: Owner
+  root: http://localhost:8083
+  cdn:
+    aplayer: https://cdn.jsdelivr.net/npm/{pkg}@{ver}/dist/{filename}
+songs:
+  prefix: /static/songs/
+  pieces:
+    hikarunana:
+      name: 光るなら
+      artist: Goose House
+      path: hikarunara.mp3
+      cover:
+      lrc: hikarunara.lrc
