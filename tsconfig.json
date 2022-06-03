@@ -33,14 +33,15 @@
     ]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "typings/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "./public",
     "dist",
     "test",
-    "./typings"
+    // "./typings"
   ],
   "linterOptions": {
     "exclude": []
