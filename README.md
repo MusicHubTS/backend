@@ -44,6 +44,14 @@ cd MusicHub
 git checkout main
 ```
 
+Don't forget to copy configurations from example, or MusicHub will read built-in default settings:
+
+```bash
+cp config.example.yml config.yml
+```
+
+Note that git ignores `config.yml` by default, which is defined in `.gitignore`.
+
 Now, follow the commands Ts.ED provided by default:
 
 ```batch
