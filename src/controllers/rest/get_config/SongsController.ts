@@ -10,8 +10,8 @@ function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {
     name: p.name,
     artist: typeof(p.artist) === 'string' ? p.artist : p.artist.join(','),
     url: path.join(prefix, p.path),
-    cover: p.cover === null ? null : path.join(prefix, p.cover),
-    lrc: p.lrc === null ? null : path.join(prefix, p.lrc)
+    cover: (p.cover === null || p.cover === undefined) ? null : path.join(prefix, p.cover),
+    lrc: (p.lrc === null || p.lrc === undefined) ? null : path.join(prefix, p.lrc)
   }));
 }
 
