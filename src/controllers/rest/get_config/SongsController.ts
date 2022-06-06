@@ -1,7 +1,6 @@
 import {Controller, Constant} from '@tsed/di';
 import {Get, Returns} from '@tsed/schema';
-import { ProjectConfig } from 'typings/src/config/project';
-import { APlayerAudios } from 'typings/src/controllers/rest/get_config';
+import { ProjectConfig, APlayerAudios } from 'typings';
 import * as path from 'path';
 
 function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {

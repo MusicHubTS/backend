@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { $log } from '@tsed/logger';
 import { merge } from 'lodash';
 import YAML from 'yaml';
-import { ProjectConfig } from 'typings/src/config/project';
+import { ProjectConfig } from 'typings';
 import { DEFAULT_CONFIG } from './default';
 
 let cfg: ProjectConfig;

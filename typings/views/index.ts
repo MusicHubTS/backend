@@ -1,4 +1,4 @@
-import { APlayerAudio } from 'typings/src/controllers/rest/get_config';
+import { APlayerAudio } from 'typings';
 
 export interface MusicHubAudio extends APlayerAudio {
   album: string;
