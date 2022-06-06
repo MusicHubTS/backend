@@ -42,6 +42,22 @@
     <script>
       var songsConfig = null;
       var elemTbodyPlaylist = document.getElementById('tbodyPlaylist');
+      var ap = null;
+
+      /**
+       * Play songs from given song config by index.
+       * @param {object} ap the APlayer object
+       * @param {object} songs the given song config
+       * @param {number|number[]} the given index or index array
+       */
+      function playSongs(ap, songs, arr) {
+        lst = typeof arr === 'number' ? songs[arr] : arr.map(v => songs.v);
+        ap.pause();
+        ap.list.clear();
+        ap.list.add(lst);
+        ap.play();
+      }
+
       (async () => {
         try {
           songsConfig = await $.ajax({
@@ -52,9 +68,9 @@
           console.error('Failed to get config of songs:', e);
         }
         elemTbodyPlaylist.innerHTML = songsConfig.map((v, idx) => (
-          `<tr>${[idx + 1, v.name, v.artist, v.album, 'Not Implementeded'].map(a => `<td>${a}</td>`).join('')}</tr>`
+          `<tr data-index="${idx}">${[idx + 1, v.name, v.artist, v.album, `<button onclick="playSongs(ap, songsConfig, ${idx})">Play</button>`].map(a => `<td>${a}</td>`).join('')}</tr>`
         )).join('');
-        const ap = new APlayer({
+        ap = new APlayer({
           container: document.getElementById('aplayer'),
           fixed: true,
           autoplay: false,
