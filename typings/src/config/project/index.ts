@@ -3,14 +3,14 @@
  *
  * @param name Name of the song.
  * @param artist String or array of the artists.
- * @param path Path of the media file.
+ * @param url URL (relative or absolute) of the media file.
  * @param cover Path of the album cover image.
  * @param lrc Path of the lyric file (should be SRT).
  */
 export interface SongPiece {
   name: string;
   artist: string[] | string;
-  path: string;
+  url: string;
   cover: string;
   lrc: string;
 }
@@ -26,3 +26,5 @@ export interface ProjectConfig {
     pieces: SongPiece[];
   };
 }
+
+export const SONG_PIECE_KEYS = ['name', 'artist', 'url', 'cover', 'lrc'];

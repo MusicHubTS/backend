@@ -9,6 +9,6 @@ songs:
     -
       name: 光るなら
       artist: Goose House
-      path: hikarunara.mp3
+      url: hikarunara.mp3
       cover:
       lrc: hikarunara.lrc

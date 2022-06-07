@@ -8,7 +8,7 @@ function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {
   return pieces.map(p => ({
     name: p.name,
     artist: typeof(p.artist) === 'string' ? p.artist : p.artist.join(','),
-    url: path.join(prefix, p.path),
+    url: path.join(prefix, p.url),
     cover: (p.cover === null || p.cover === undefined) ? null : path.join(prefix, p.cover),
     lrc: (p.lrc === null || p.lrc === undefined) ? null : path.join(prefix, p.lrc)
   }));
