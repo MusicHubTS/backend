@@ -5,7 +5,7 @@ import * as path from 'path';
 
 function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {
   const { prefix, pieces } = songs;
-  return Object.values(pieces).map(p => ({
+  return pieces.map(p => ({
     name: p.name,
     artist: typeof(p.artist) === 'string' ? p.artist : p.artist.join(','),
     url: path.join(prefix, p.path),

@@ -23,6 +23,6 @@ export interface ProjectConfig {
   };
   songs: {
     prefix: string;
-    pieces: Record<string, SongPiece>;
+    pieces: SongPiece[];
   };
 }

@@ -6,6 +6,6 @@ export const DEFAULT_CONFIG = {
   },
   songs: {
     prefix: '/static/songs',
-    pieces: {}
+    pieces: []
   }
 };
