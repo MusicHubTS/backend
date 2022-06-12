@@ -3,7 +3,52 @@ import { $log } from '@tsed/logger';
 import { merge } from 'lodash';
 import YAML from 'yaml';
 import { ProjectConfig } from 'typings';
-import { DEFAULT_CONFIG, DEFAULT_SONG_PIECE } from './default';
+import { DEFAULT_CONFIG, DEFAULT_SONG_PIECE, VALID_RESOURCE_URL_SCHEMA } from './default';
+import path from 'path';
+
+function isValidURL(s: string): boolean {
+  try {
+    new URL(s);
+  } catch (_) {
+    return false;
+  }
+
+  return true;
+}
+
+function isValidResourceURL(s: string): boolean {
+  if (!isValidURL(s)) {
+    return false;
+  }
+
+  return VALID_RESOURCE_URL_SCHEMA.includes((new URL(s)).protocol);
+}
+
+function isAbsoluteResourcePath(s: string): boolean {
+  return isValidURL(s) && isValidResourceURL(s) || path.isAbsolute(s);
+}
+
+/**
+ * Parse a resource path to acceptable one.
+ * @param p the given path to be parsed
+ * @param options custom options
+ * @param options.prefix prefix for relative paths
+ * @param options.suffix suffix for all paths
+ */
+function parseResourcePath(p: string, options?: { prefix?: string, suffix?: string}): string {
+  let prefix = '', suffix = '';
+  if (options !== undefined && options.prefix !== undefined) {
+    prefix = options.prefix;
+  }
+  if (options !== undefined && options.suffix !== undefined) {
+    suffix = options.suffix;
+  }
+  if (isAbsoluteResourcePath(p)) {
+    return path.join(p, suffix);
+  } else {
+    return path.join(prefix, p, suffix);
+  }
+}
 
 function standardize(cfg: ProjectConfig): ProjectConfig {
   // Step 1: Merge with a rough framework
@@ -33,4 +78,8 @@ $log.debug(JSON.stringify(cfg, undefined, 2));  // original config, unless parsi
 $log.debug('Standardized configuration:');
 $log.debug(JSON.stringify(standardized, undefined, 2));  // standardized form
 
-export default cfg;
+export {
+  parseResourcePath,
+  standardize,
+  cfg as projectConfig
+};
