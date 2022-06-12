@@ -7,10 +7,6 @@ import { ProjectConfig } from 'typings';
 @Hidden()
 @Controller('/')
 export class IndexController {
-  /**
-   * @note The returned config has a property `default` which contains what we
-   * really want.
-   */
   @Value('project')
     projectConfig: {default: ProjectConfig};
 
@@ -18,6 +14,6 @@ export class IndexController {
   @View('index.ejs')
   @(Returns(200, String).ContentType('text/html'))
   get(/*@HeaderParams('x-forwarded-proto') protocol: string, @HeaderParams('host') host: string*/) {
-    return this.projectConfig.default;
+    return this.projectConfig;
   }
 }
