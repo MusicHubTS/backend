@@ -72,7 +72,7 @@ $ npm run start:prod
 
 ### Docker
 
-**Note: It's just a default method for running Ts.ED projects. It's not fully tested for this one. It's still recommended to use traditional NPM method.**
+**Note: It's just a default method for running Ts.ED projects. It's not fully tested for this one. It's still recommended to use traditional source installation method.**
 
 ```bash
 # build docker image
