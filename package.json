@@ -1,6 +1,6 @@
 {
   "name": "musichub",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A powerful online & offline music player",
   "scripts": {
     "test": "npm run test:lint && npm run test:coverage",
