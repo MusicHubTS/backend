@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer-remake/dist/APlayer.min.css" />
     <title>Home | MusicHub hosted by <%- server.owner %></title>
   </head>
   <body>
@@ -29,7 +29,7 @@
               <td>Name</td>
               <td>Artist</td>
               <td>Album</td>
-              <td>Operations</td>
+              <td style="width: 1%">Operations</td>
             </thead>
             <tbody id="tbodyPlaylist"></tbody>
           </table>
@@ -38,7 +38,7 @@
     </div>
     <div id="aplayer"></div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aplayer-remake/dist/APlayer.min.js"></script>
     <script>
       var songsConfig = null;
       var elemTbodyPlaylist = document.getElementById('tbodyPlaylist');
