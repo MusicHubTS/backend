@@ -5,7 +5,7 @@ import { ProjectConfig } from 'typings';
 @Controller('/')
 export class ServerConfigController {
   @Constant('project')
-  projectConfig: { default: ProjectConfig };
+    projectConfig: { default: ProjectConfig };
 
   @Get('/')
   @Returns(200, String).ContentType('application/json; charset=utf-8')

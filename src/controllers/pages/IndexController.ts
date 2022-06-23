@@ -8,7 +8,7 @@ import { ProjectConfig } from 'typings';
 @Controller('/')
 export class IndexController {
   @Value('project')
-  projectConfig: { default: ProjectConfig };
+    projectConfig: { default: ProjectConfig };
 
   @Get('/')
   @View('index.ejs')

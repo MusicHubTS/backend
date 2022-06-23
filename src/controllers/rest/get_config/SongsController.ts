@@ -17,7 +17,7 @@ function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {
 @Controller('/songs')
 export class SongsController {
   @Constant('project')
-  projectConfig: ProjectConfig;
+    projectConfig: ProjectConfig;
 
   // for productive use
   @Get('/')
