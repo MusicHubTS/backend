@@ -16,6 +16,18 @@
       tr > td:first-child {
         text-align: center;
       }
+      /*
+        This is a hook of APlayer, which results from the upstream.
+        See issue https://github.com/DIYgod/APlayer/issues/741.
+      */
+      .aplayer.aplayer-fixed .aplayer-body {
+        max-width: initial;
+        width: calc(100% - 18px);
+      }
+      .aplayer.aplayer-fixed .aplayer-info .aplayer-music {
+        max-width: initial;
+        width: calc(100% - 105px);
+      }
     </style>
     <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0">MusicHub Homepage</h1>
     <div style="display: flex; align-content: center; justify-content: center">
