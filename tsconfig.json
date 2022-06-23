@@ -22,25 +22,15 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "lib": [
-      "es7",
-      "dom",
-      "ESNext.AsyncIterable"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./typings"
-    ]
+    "lib": ["es7", "dom", "ESNext.AsyncIterable"],
+    "typeRoots": ["./node_modules/@types", "./typings"]
   },
-  "include": [
-    "src/**/*.ts",
-    "typings/**/*.ts"
-  ],
+  "include": ["src/**/*.ts", "typings/**/*.ts", "*.config.js"],
   "exclude": [
     "node_modules",
     "./public",
     "dist",
-    "test",
+    "test"
     // "./typings"
   ],
   "linterOptions": {

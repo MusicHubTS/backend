@@ -19,7 +19,7 @@ describe('Server', () => {
       errors: [],
       message: 'Resource "/rest" not found',
       name: 'NOT_FOUND',
-      status: 404,
+      status: 404
     });
   });
 });

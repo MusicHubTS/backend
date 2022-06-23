@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer-remake/dist/APlayer.min.css" />
     <title>Home | MusicHub hosted by <%- server.owner %></title>
   </head>
   <body>
@@ -14,15 +13,15 @@
         text-align: center;
         font-weight: bolder;
       }
-      tr>td:first-child {
+      tr > td:first-child {
         text-align: center;
       }
     </style>
-    <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0;">MusicHub Homepage</h1>
-    <div style="display: flex; align-content: center; justify-content: center;">
-      <div class="lobby" style="width: 80%; max-width: 80%;">
-        <h2 style="margin: 0 0 25px 0;">Playlist</h2>
-        <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8);">
+    <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0">MusicHub Homepage</h1>
+    <div style="display: flex; align-content: center; justify-content: center">
+      <div class="lobby" style="width: 80%; max-width: 80%">
+        <h2 style="margin: 0 0 25px 0">Playlist</h2>
+        <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8)">
           <table style="width: 100%" id="tblPlaylist">
             <thead>
               <td style="width: 1%">Num#</td>
@@ -51,7 +50,7 @@
        * @param {number|number[]} the given index or index array
        */
       function playSongs(ap, songs, arr) {
-        lst = typeof arr === 'number' ? songs[arr] : arr.map(v => songs.v);
+        lst = typeof arr === 'number' ? songs[arr] : arr.map((v) => songs.v);
         ap.pause();
         ap.list.clear();
         ap.list.add(lst);
@@ -67,9 +66,20 @@
         } catch (e) {
           console.error('Failed to get config of songs:', e);
         }
-        elemTbodyPlaylist.innerHTML = songsConfig.map((v, idx) => (
-          `<tr data-index="${idx}">${[idx + 1, v.name, v.artist, v.album, `<button onclick="playSongs(ap, songsConfig, ${idx})">Play</button>`].map(a => `<td>${a}</td>`).join('')}</tr>`
-        )).join('');
+        elemTbodyPlaylist.innerHTML = songsConfig
+          .map(
+            (v, idx) =>
+              `<tr data-index="${idx}">${[
+                idx + 1,
+                v.name,
+                v.artist,
+                v.album,
+                `<button onclick="playSongs(ap, songsConfig, ${idx})">Play</button>`
+              ]
+                .map((a) => `<td>${a}</td>`)
+                .join('')}</tr>`
+          )
+          .join('');
         ap = new APlayer({
           container: document.getElementById('aplayer'),
           fixed: true,

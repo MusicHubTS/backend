@@ -21,11 +21,11 @@ function isValidResourceURL(s: string): boolean {
     return false;
   }
 
-  return VALID_RESOURCE_URL_SCHEMA.includes((new URL(s)).protocol);
+  return VALID_RESOURCE_URL_SCHEMA.includes(new URL(s).protocol);
 }
 
 function isAbsoluteResourcePath(s: string): boolean {
-  return isValidURL(s) && isValidResourceURL(s) || path.isAbsolute(s);
+  return (isValidURL(s) && isValidResourceURL(s)) || path.isAbsolute(s);
 }
 
 /**
@@ -35,8 +35,9 @@ function isAbsoluteResourcePath(s: string): boolean {
  * @param options.prefix prefix for relative paths
  * @param options.suffix suffix for all paths
  */
-function parseResourcePath(p: string, options?: { prefix?: string, suffix?: string}): string {
-  let prefix = '', suffix = '';
+function parseResourcePath(p: string, options?: { prefix?: string; suffix?: string }): string {
+  let prefix = '',
+    suffix = '';
   if (options !== undefined && options.prefix !== undefined) {
     prefix = options.prefix;
   }
@@ -74,12 +75,8 @@ try {
 }
 const standardized = standardize(cfg);
 $log.debug('Configurations:');
-$log.debug(JSON.stringify(cfg, undefined, 2));  // original config, unless parsing has any error
+$log.debug(JSON.stringify(cfg, undefined, 2)); // original config, unless parsing has any error
 $log.debug('Standardized configuration:');
-$log.debug(JSON.stringify(standardized, undefined, 2));  // standardized form
+$log.debug(JSON.stringify(standardized, undefined, 2)); // standardized form
 
-export {
-  parseResourcePath,
-  standardize,
-  cfg as projectConfig
-};
+export { parseResourcePath, standardize, cfg as projectConfig };

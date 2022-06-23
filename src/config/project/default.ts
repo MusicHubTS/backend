@@ -19,8 +19,4 @@ export const DEFAULT_SONG_PIECE = SONG_PIECE_KEYS.reduce((obj: any, v) => {
   return obj;
 }, {});
 
-export const VALID_RESOURCE_URL_SCHEMA = [
-  'http:',
-  'https:',
-  'ftp:'
-];
+export const VALID_RESOURCE_URL_SCHEMA = ['http:', 'https:', 'ftp:'];

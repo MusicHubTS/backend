@@ -6,8 +6,7 @@ server:
 songs:
   prefix: /static/songs/
   pieces:
-    -
-      name: 光るなら
+    - name: 光るなら
       artist: Goose House
       url: hikarunara.mp3
       cover:

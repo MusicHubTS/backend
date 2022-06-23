@@ -10,7 +10,7 @@ services:
         - no_proxy
     image: music-hub/server:latest
     ports:
-      - "8081:8081"
-    stdin_open: true  # -i
-    tty: true         # -t
+      - '8081:8081'
+    stdin_open: true # -i
+    tty: true # -t
 

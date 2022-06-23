@@ -1,1 +1,1 @@
-export * from "./get_config";
+export * from './get_config';
