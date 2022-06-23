@@ -12,9 +12,10 @@
     "test:coverage": "npm run test:unit",
     "test:lint": "eslint '**/*.{ts,js}'",
     "test:lint:fix": "eslint '**/*.{ts,js}' --fix",
-    "format:check": "eslint '**/*.{ts,js}'; prettier-check '**/*.{ts,js,json,yml,yaml}'",
-    "format:staged": "eslint '**/*.{ts,js}' --fix && pretty-quick --staged --verbose --pattern '**/*.{ts,js,json,yml,yaml}'",
-    "prettier": "prettier '**/*.{ts,js,json,yml,yaml}' --write"
+    "test:pretty": "prettier-check '**/*.{json,yml,yaml}'",
+    "test:pretty:fix": "prettier '**/*.{json,yml,yaml}' --write",
+    "format:check": "npm run test:lint; npm run test:pretty",
+    "format:staged": "npm run test:lint:fix && pretty-quick --staged --verbose --pattern '**/*.{json,yml,yaml}'"
   },
   "dependencies": {
     "@tsed/ajv": "^6.114.14",
