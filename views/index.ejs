@@ -56,16 +56,13 @@
       var ap = null;
 
       /**
-       * Play songs from given song config by index.
+       * Play a song by index.
        * @param {object} ap the APlayer object
-       * @param {object} songs the given song config
-       * @param {number|number[]} the given index or index array
+       * @param {number} index the given index
        */
-      function playSongs(ap, songs, arr) {
-        lst = typeof arr === 'number' ? songs[arr] : arr.map((v) => songs.v);
+      function playSong(ap, index) {
         ap.pause();
-        ap.list.clear();
-        ap.list.add(lst);
+        ap.list.switch(index);
         ap.play();
       }
 
@@ -86,7 +83,7 @@
                 v.name,
                 v.artist,
                 v.album,
-                `<button onclick="playSongs(ap, songsConfig, ${idx})">Play</button>`
+                `<button onclick="playSong(ap, ${idx})">Play</button>`
               ]
                 .map((a) => `<td>${a}</td>`)
                 .join('')}</tr>`
