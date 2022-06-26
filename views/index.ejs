@@ -37,18 +37,18 @@
     <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0">MusicHub Homepage</h1>
     <div style="display: flex; align-content: center; justify-content: center">
       <div class="lobby" style="width: 80%; max-width: 80%">
-        <h2 style="margin: 0 0 25px 0">Playlist</h2>
-        <div>
+        <h2 style="margin: 0 0 20px 0">Playlist</h2>
+        <div style="margin: 0 0 5px 0">
           <span>
-            <button>Select All</button>
-            <button>Select None</button>
-            <button>Invert Selection</button>
+            <button onclick="selectAll(elemTbodyPlaylist)">Select All</button>
+            <button onclick="selectNone(elemTbodyPlaylist)">Select None</button>
+            <button onclick="invertSelection(elemTbodyPlaylist)">Invert Selection</button>
           </span>
         </div>
         <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8)">
           <table style="width: 100%" id="tblPlaylist">
             <thead>
-              <td style="width: 1%">Num#</td>
+              <td colspan="2" style="width: 1%">Num#</td>
               <td>Name</td>
               <td>Artist</td>
               <td>Album</td>
@@ -66,6 +66,24 @@
       var songsConfig = null;
       var elemTbodyPlaylist = document.getElementById('tbodyPlaylist');
       var ap = null;
+
+      function selectAll(context) {
+        for (tr of context.children) {
+          tr.children[0].children[0].checked = true;
+        }
+      }
+
+      function selectNone(context) {
+        for (tr of context.children) {
+          tr.children[0].children[0].checked = false;
+        }
+      }
+
+      function invertSelection(context) {
+        for (tr of context.children) {
+          tr.children[0].children[0].checked = !tr.children[0].children[0].checked;
+        }
+      }
 
       /**
        * Play a song by index.
@@ -116,6 +134,7 @@
           .map(
             (v, idx) =>
               `<tr data-index="${idx}">${[
+                '<input type="checkbox" />',
                 idx + 1,
                 v.name,
                 v.artist,
