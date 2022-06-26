@@ -3,19 +3,23 @@
   <head>
     <title>Home | MusicHub hosted by <%- server.owner %></title>
   </head>
+
   <body>
     <style>
       * {
         --musichub-heading-height: 47px;
         --musichub-aplayer-height: 66px;
       }
+
       thead td {
         text-align: center;
         font-weight: bolder;
       }
+
       tr > td:first-child {
         text-align: center;
       }
+
       /*
         This is a hook of APlayer, which results from the upstream.
         See issue https://github.com/DIYgod/APlayer/issues/741.
@@ -24,6 +28,7 @@
         max-width: initial;
         width: calc(100% - 18px);
       }
+
       .aplayer.aplayer-fixed .aplayer-info .aplayer-music {
         max-width: initial;
         width: calc(100% - 105px);
@@ -115,7 +120,8 @@
                 v.name,
                 v.artist,
                 v.album,
-                `<button onclick="playSong(ap, null, this.parentNode.parentNode)">Play</button>` + `<button onclick="removeSong(ap, null, this.parentNode.parentNode)">Remove</button>`
+                `<button onclick="playSong(ap, null, this.parentNode.parentNode)">Play</button>` +
+                  `<button onclick="removeSong(ap, null, this.parentNode.parentNode)">Remove</button>`
               ]
                 .map((a) => `<td>${a}</td>`)
                 .join('')}</tr>`
