@@ -66,6 +66,22 @@
         ap.play();
       }
 
+      /**
+       * Remove a song by index.
+       * @param {object} ap the APlayer object
+       * @param {number} index the given index
+       */
+      function removeSong(ap, index) {
+        // MusicHub list
+        elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[index]);
+        for (let i = index; i < elemTbodyPlaylist.children.length; ++i) {
+          elemTbodyPlaylist.children[i].dataset.index = i;
+          elemTbodyPlaylist.children[i].children[0].innerText = i + 1;
+        }
+        // APlayer list
+        ap.list.remove(index);
+      }
+
       (async () => {
         try {
           songsConfig = await $.ajax({
@@ -75,6 +91,7 @@
         } catch (e) {
           console.error('Failed to get config of songs:', e);
         }
+
         elemTbodyPlaylist.innerHTML = songsConfig
           .map(
             (v, idx) =>
