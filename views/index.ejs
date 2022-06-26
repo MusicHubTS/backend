@@ -131,6 +131,8 @@
           mutex: true,
           audio: songsConfig
         });
+        ap.setMode('normal'); // default: expand player panel
+        ap.list.hide(); // Force to hide player list to make sure it can be expanded for the first time.
       })();
     </script>
   </body>
