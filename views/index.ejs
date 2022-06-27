@@ -103,19 +103,27 @@
       /**
        * Remove a song by index.
        * @param {object} ap the APlayer object
-       * @param {number|null} index the given index
+       * @param {number[]|number|null} index the given index or array of them
+       * @param {Element} context the given context
        */
-      function removeSong(ap, index, context) {
+      function removeSongs(ap, index, context) {
+        // parse arguments
         context = context || this;
         if (index === null) {
-          index = parseInt(context.dataset.index);
+          index = [context.dataset.index];
+        } else if (!Array.isArray(index)) {
+          index = [index];
         }
+
+        index = index.map(v => parseInt(v));
+        index.sort((a, b) => a - b); // ascending sort
         // MusicHub list
-        elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[index]);
-        for (let i = index; i < elemTbodyPlaylist.children.length; ++i) {
+        index.forEach(v => elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[v]));
+        for (let i = index[0]; i < elemTbodyPlaylist.children.length; ++i) {
           elemTbodyPlaylist.children[i].dataset.index = i;
-          elemTbodyPlaylist.children[i].children[0].innerText = i + 1;
+          elemTbodyPlaylist.children[i].children[1].innerText = i + 1;
         }
+
         // APlayer list
         ap.list.remove(index);
       }
@@ -140,7 +148,7 @@
                 v.artist,
                 v.album,
                 `<button onclick="playSong(ap, null, this.parentNode.parentNode)">Play</button>` +
-                  `<button onclick="removeSong(ap, null, this.parentNode.parentNode)">Remove</button>`
+                  `<button onclick="removeSongs(ap, null, this.parentNode.parentNode)">Remove</button>`
               ]
                 .map((a) => `<td>${a}</td>`)
                 .join('')}</tr>`
