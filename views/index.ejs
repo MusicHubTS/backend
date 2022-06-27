@@ -43,6 +43,7 @@
             <button onclick="selectAll(elemTbodyPlaylist)">Select All</button>
             <button onclick="selectNone(elemTbodyPlaylist)">Select None</button>
             <button onclick="invertSelection(elemTbodyPlaylist)">Invert Selection</button>
+            <button onclick="removeSelectedSongs(ap, elemTbodyPlaylist)">Remove Selected</button>
           </span>
         </div>
         <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8)">
@@ -116,16 +117,27 @@
         }
 
         index = index.map(v => parseInt(v));
-        index.sort((a, b) => a - b); // ascending sort
+        index.sort((a, b) => b - a); // descending sort
         // MusicHub list
         index.forEach(v => elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[v]));
-        for (let i = index[0]; i < elemTbodyPlaylist.children.length; ++i) {
+        for (let i = index[index.length - 1]; i < elemTbodyPlaylist.children.length; ++i) {
           elemTbodyPlaylist.children[i].dataset.index = i;
           elemTbodyPlaylist.children[i].children[1].innerText = i + 1;
         }
 
         // APlayer list
         ap.list.remove(index);
+      }
+
+      function removeSelectedSongs(ap, context) {
+        context = context || this;
+        let index = [];
+        Array.from(context.children).forEach((v, i) => {
+          if (v.children[0].children[0].checked) {
+            index.push(i)
+          }
+        });
+        return removeSongs(ap, index, context);
       }
 
       (async () => {
