@@ -33,7 +33,25 @@
         max-width: initial;
         width: calc(100% - 105px);
       }
+
+      svg.order {
+        height: 0.8em;
+        width: 0.8em;
+      }
+
+      svg.order>polygon {
+        fill: grey;
+      }
+
+      svg.order.ascending>polygon.upper {
+        fill: black;
+      }
+
+      svg.order.descending>polygon.lower {
+        fill: black;
+      }
     </style>
+
     <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0">MusicHub Homepage</h1>
     <div style="display: flex; align-content: center; justify-content: center">
       <div class="lobby" style="width: 80%; max-width: 80%">
@@ -49,7 +67,7 @@
         <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8)">
           <table style="width: 100%" id="tblPlaylist">
             <thead>
-              <td colspan="2" style="width: 1%">Num#</td>
+              <td colspan="2" style="width: 10%">Num#</td>
               <td>Name</td>
               <td>Artist</td>
               <td>Album</td>
@@ -61,11 +79,21 @@
       </div>
     </div>
     <div id="aplayer"></div>
+
+    <template id="svgOrderUnordered">
+      <svg viewBox="0 0 24 24" class="order unordered">
+        <polygon points="12,0 0,11 24,11" class="upper"></polygon>
+        <polygon points="12,24 0,13 24,13" class="lower"></polygon>
+      </svg>
+    </template>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aplayer-remake/dist/APlayer.min.js"></script>
     <script>
       var songsConfig = null;
+      var elemTblPlaylist = document.getElementById('tblPlaylist');
       var elemTbodyPlaylist = document.getElementById('tbodyPlaylist');
+      var elemSvgOrderUnordered = document.getElementById('svgOrderUnordered');
       var ap = null;
 
       function selectAll(context) {
@@ -141,6 +169,9 @@
       }
 
       (async () => {
+        // add "order" SVGs to essential columns
+        Array.from(document.querySelectorAll('#tblPlaylist>thead td')).slice(0, 4).forEach(v => v.append(elemSvgOrderUnordered.content.cloneNode(true)));
+
         try {
           songsConfig = await $.ajax({
             url: '/rest/get-config/songs',
