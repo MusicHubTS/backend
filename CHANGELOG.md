@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Set up ESLint and prettier pre-commit hooks.
-- Make playlist of MusicHub more useful and add a toolbar for it. (#3)
+- Make playlist of MusicHub more useful and add a toolbar for it. ([#3])
 
 ### Breaking API changed
 
@@ -24,8 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Add missing title of v0.2.0 in `CHANGELOG.md`. (633313c223f89ea7ae4b91afbd4198750f6ed979)
-- Set width of expanded player panel correctly. (#5)
+- Add missing title of v0.2.0 in `CHANGELOG.md`. ([633313c])
+- Set width of expanded player panel correctly. ([#5])
 
 ## [0.2.0] - 2022-06-12
 
@@ -42,9 +42,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix some annoying TypeScript compiler errors. (ce44e8bfa078640e025ac9a61a228a4a54b844d6)
-- Accept blank `cover` and `lrc` fields of `APlayerAudio`. (6a9fda399856d5b4570738ba5a74fcd6a577cea8)
-- Fix parsing error on absolute URLs. (#2)
+- Fix some annoying TypeScript compiler errors. ([ce44e8b])
+- Accept blank `cover` and `lrc` fields of `APlayerAudio`. ([6a9fda3])
+- Fix parsing error on absolute URLs. ([#2])
 
 ## [0.1.0] - 2022-06-03
 
@@ -55,3 +55,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.3.0]: https://github.com/LittleYe233/MusicHub/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/LittleYe233/MusicHub/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/LittleYe233/MusicHub/releases/tag/v0.1.0
+
+[#5]: https://github.com/LittleYe233/MusicHub/issues/5
+[#3]: https://github.com/LittleYe233/MusicHub/issues/3
+[#2]: https://github.com/LittleYe233/MusicHub/issues/2
+
+[633313c]: https://github.com/LittleYe233/MusicHub/commit/633313c223f89ea7ae4b91afbd4198750f6ed979
+[ce44e8b]: https://github.com/LittleYe233/MusicHub/commit/ce44e8bfa078640e025ac9a61a228a4a54b844d6
+[6a9fda3]: https://github.com/LittleYe233/MusicHub/commit/6a9fda399856d5b4570738ba5a74fcd6a577cea8
