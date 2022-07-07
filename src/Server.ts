@@ -47,7 +47,7 @@ import * as pages from './controllers/pages';
   },
   exclude: ['**/*.spec.ts'],
   statics: {
-    '/static': [
+    '/public': [
       {
         root: './public',
         index: false

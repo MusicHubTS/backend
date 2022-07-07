@@ -4,7 +4,7 @@ server:
   cdn:
     aplayer: https://cdn.jsdelivr.net/npm/{pkg}@{ver}/dist/{filename}
 songs:
-  prefix: /static/songs/
+  prefix: /public/songs/
   pieces:
     - name: 光るなら
       artist: Goose House

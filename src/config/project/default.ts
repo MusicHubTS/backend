@@ -7,7 +7,7 @@ export const DEFAULT_CONFIG = {
     cdn: 'jsdelivr'
   },
   songs: {
-    prefix: '/static/songs',
+    prefix: '/public/songs',
     pieces: []
   }
 };
