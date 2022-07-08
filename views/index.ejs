@@ -12,15 +12,6 @@
         --musichub-aplayer-height: 66px;
       }
 
-      thead td {
-        text-align: center;
-        font-weight: bolder;
-      }
-
-      tr > td:first-child {
-        text-align: center;
-      }
-
       /*
         This is a hook of APlayer, which results from the upstream.
         See issue https://github.com/DIYgod/APlayer/issues/741.
@@ -35,57 +26,72 @@
         width: calc(100% - 105px);
       }
 
-      svg.order {
-        height: 0.8em;
-        width: 0.8em;
-      }
-
-      svg.order>polygon {
+      svg.order > polygon {
         fill: grey;
       }
 
-      svg.order.ascending>polygon.upper {
+      svg.order.ascending > polygon.upper {
         fill: black;
       }
 
-      svg.order.descending>polygon.lower {
+      svg.order.descending > polygon.lower {
         fill: black;
       }
     </style>
 
-    <h1 style="text-align: center; height: var(--musichub-heading-height); margin: 0 0 25px 0">MusicHub Homepage</h1>
-    <div style="display: flex; align-content: center; justify-content: center">
-      <div class="lobby" style="width: 80%; max-width: 80%">
-        <h2 style="margin: 0 0 20px 0">Playlist</h2>
-        <div style="margin: 0 0 5px 0">
-          <span>
-            <button onclick="selectAll(elemTbodyPlaylist)">Select All</button>
-            <button onclick="selectNone(elemTbodyPlaylist)">Select None</button>
-            <button onclick="invertSelection(elemTbodyPlaylist)">Invert Selection</button>
-            <button onclick="removeSelectedSongs(ap, elemTbodyPlaylist)">Remove Selected</button>
-          </span>
-        </div>
-        <div style="overflow: auto; height: calc((100vh - var(--musichub-aplayer-height) - var(--musichub-heading-height)) * 0.8)">
-          <table style="width: 100%" id="tblPlaylist">
-            <thead>
-              <td colspan="2" style="width: 10%">Num#</td>
-              <td>Name</td>
-              <td>Artist</td>
-              <td>Album</td>
-              <td style="width: 1%">Operations</td>
-            </thead>
-            <tbody id="tbodyPlaylist"></tbody>
-          </table>
+    <div class="relative flex min-h-screen flex-col overflow-hidden font-serif">
+      <h1 class="py-3 text-center text-4xl font-bold">MusicHub Homepage</h1>
+      <div class="relative flex justify-center">
+        <div id="lobby" class="max-w-4/5 w-4/5">
+          <h2 class="mb-3 text-3xl font-bold">Playlist</h2>
+          <div class="my-3">
+            <span class="space-x-1">
+              <button class="rounded-lg border-2 border-gray-100 px-2 py-1 shadow-md" onclick="selectAll(elemTbodyPlaylist)">
+                Select All
+              </button>
+              <button class="rounded-lg border-2 border-gray-100 px-2 py-1 shadow-md" onclick="selectNone(elemTbodyPlaylist)">
+                Select None
+              </button>
+              <button class="rounded-lg border-2 border-gray-100 px-2 py-1 shadow-md" onclick="invertSelection(elemTbodyPlaylist)">
+                Invert Selection
+              </button>
+              <button class="rounded-lg border-2 border-gray-100 px-2 py-1 shadow-md" onclick="removeSelectedSongs(ap, elemTbodyPlaylist)">
+                Remove Selected
+              </button>
+            </span>
+          </div>
+          <div>
+            <table id="tblPlaylist" class="table-fixed w-full leading-8">
+              <thead class="font-bold">
+                <td class="max-w-[1em] min-w-[1em] w-4"></td>
+                <td class="max-w-[5em] min-w-[4.75em] w-20 text-center">
+                  <span>Num#</span>
+                </td>
+                <td class="text-center">
+                  <span>Name</span>
+                </td>
+                <td class="max-w-[20%] min-w-[20%] w-1/5 text-center">
+                  <span>Artists</span>
+                </td>
+                <td class="max-w-[20%] min-w-[20%] w-1/5 text-center">
+                  <span>Album</span>
+                </td>
+                <td class="max-w-[10%] min-w-[10%] w-[10%] text-center">Operations</td>
+              </thead>
+              <tbody id="tbodyPlaylist"></tbody>
+            </table>
+          </div>
         </div>
       </div>
+      <div id="aplayer"></div>
     </div>
-    <div id="aplayer"></div>
 
     <template id="svgOrderUnordered">
-      <svg viewBox="0 0 24 24" class="order unordered">
-        <polygon points="12,0 0,11 24,11" class="upper"></polygon>
-        <polygon points="12,24 0,13 24,13" class="lower"></polygon>
-      </svg>
+      <span>
+        <svg viewBox="0 0 24 24" class="order unordered inline h-3.5">
+          <polygon points="12,0 0,11 24,11" class="upper"></polygon>
+          <polygon points="12,24 0,13 24,13" class="lower"></polygon></svg
+      ></span>
     </template>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -145,10 +151,10 @@
           index = [index];
         }
 
-        index = index.map(v => parseInt(v));
+        index = index.map((v) => parseInt(v));
         index.sort((a, b) => b - a); // descending sort
         // MusicHub list
-        index.forEach(v => elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[v]));
+        index.forEach((v) => elemTbodyPlaylist.removeChild(elemTbodyPlaylist.children[v]));
         for (let i = index[index.length - 1]; i < elemTbodyPlaylist.children.length; ++i) {
           elemTbodyPlaylist.children[i].dataset.index = i;
           elemTbodyPlaylist.children[i].children[1].innerText = i + 1;
@@ -163,7 +169,7 @@
         let index = [];
         Array.from(context.children).forEach((v, i) => {
           if (v.children[0].children[0].checked) {
-            index.push(i)
+            index.push(i);
           }
         });
         return removeSongs(ap, index, context);
@@ -171,7 +177,9 @@
 
       (async () => {
         // add "order" SVGs to essential columns
-        Array.from(document.querySelectorAll('#tblPlaylist>thead td')).slice(0, 4).forEach(v => v.append(elemSvgOrderUnordered.content.cloneNode(true)));
+        Array.from(document.querySelectorAll('#tblPlaylist>thead td'))
+          .slice(1, 5)
+          .forEach((v) => v.append(elemSvgOrderUnordered.content.cloneNode(true)));
 
         try {
           songsConfig = await $.ajax({
@@ -185,17 +193,14 @@
         elemTbodyPlaylist.innerHTML = songsConfig
           .map(
             (v, idx) =>
-              `<tr data-index="${idx}">${[
-                '<input type="checkbox" />',
-                idx + 1,
-                v.name,
-                v.artist,
-                v.album,
-                `<button onclick="playSong(ap, null, this.parentNode.parentNode)">Play</button>` +
-                  `<button onclick="removeSongs(ap, null, this.parentNode.parentNode)">Remove</button>`
-              ]
-                .map((a) => `<td>${a}</td>`)
-                .join('')}</tr>`
+              `<tr data-index="${idx}">` +
+              `<td class="text-center"><input type="checkbox" /></td>` +
+              `<td class="text-center">${idx + 1}</td>` +
+              `<td>${v.name}</td>` +
+              `<td>${v.artist}</td>` +
+              `<td>${v.album}</td>` +
+              `<td><button onclick="playSong(ap, null, this.parentNode.parentNode)">Play</button><button onclick="removeSongs(ap, null, this.parentNode.parentNode)">Remove</button></td>` +
+              `</tr>`
           )
           .join('');
         ap = new APlayer({
