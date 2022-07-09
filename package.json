@@ -1,15 +1,14 @@
 {
-  "name": "musichub",
-  "version": "0.4.0",
-  "description": "A powerful online & offline music player",
+  "name": "@musichub/backend",
+  "version": "0.5.0",
+  "description": "Back-end of the powerful online & offline music player, written in TypeScript and Ts.Ed",
   "scripts": {
     "test": "npm run test:lint && npm run test:coverage",
-    "build": "npm run build:ts && npm run build:css",
+    "build": "npm run build:ts",
     "build:ts": "tsc --project tsconfig.compile.json",
-    "build:css": "tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css",
     "barrels": "barrelsby --config .barrelsby.json",
-    "start": "npm run build:css && tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
-    "start:prod": "cross-env NODE_ENV=production npm run build:css && node dist/index.js",
+    "start": "tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
+    "start:prod": "cross-env NODE_ENV=production node dist/index.js",
     "test:unit": "cross-env NODE_ENV=test jest",
     "test:coverage": "npm run test:unit",
     "test:lint": "eslint '**/*.{ts,js}'",
@@ -81,7 +80,6 @@
     "prettier-check": "^2.0.0",
     "pretty-quick": "^3.1.3",
     "supertest": "^6.2.3",
-    "tailwindcss": "^3.1.4",
     "ts-jest": "^28.0.3",
     "ts-node": "^10.8.0",
     "ts-node-dev": "^2.0.0",
@@ -92,20 +90,21 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LittleYe233/MusicHub.git"
+    "url": "git+https://github.com/MusicHubTS/backend.git"
   },
   "keywords": [
     "music",
     "web",
-    "expressjs",
-    "player"
+    "ts.ed",
+    "player",
+    "backend"
   ],
-  "author": "LittleYe233",
+  "author": "The MusicHub Core Team (https://github.com/orgs/MusicHubTS/teams/core)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LittleYe233/MusicHub/issues"
+    "url": "https://github.com/MusicHubTS/backend/issues"
   },
-  "homepage": "https://github.com/LittleYe233/MusicHub#readme",
+  "homepage": "https://github.com/MusicHubTS/backend#readme",
   "tsed": {
     "packageManager": "npm",
     "convention": "default",
