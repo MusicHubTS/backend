@@ -11,7 +11,6 @@ import '@tsed/ajv';
 import '@tsed/swagger';
 import { config } from './config';
 import * as rest from './controllers/rest';
-import * as pages from './controllers/pages';
 
 @Configuration({
   ...config,
@@ -20,8 +19,7 @@ import * as pages from './controllers/pages';
   httpsPort: false, // CHANGE
   componentsScan: false,
   mount: {
-    '/rest': [...Object.values(rest)],
-    '/': [...Object.values(pages)]
+    '/rest': [...Object.values(rest)]
   },
   swagger: [
     {
