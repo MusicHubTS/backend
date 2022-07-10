@@ -25,13 +25,13 @@ It supports (or will support) plugins/addons for many other music platforms and 
 For Linux/OS X users, open your terminal and clone this repo:
 
 ```bash
-git clone https://github.com/MusicHubTS/backend.git
+git clone https://github.com/MusicHubTS/backend.git musichub-backend
 ```
 
 Then change directory into it and choose the branch you want (main is recommended):
 
 ```bash
-cd MusicHub
+cd musichub-backend
 git checkout main
 ```
 
@@ -117,7 +117,7 @@ Edit `.barreslby.json` to customize it:
 
 - `main`: stable upstream branch
 - `unstable`: unstable upstream branch, **default** at present
-- `dev` and `dev_*`: development branches for the owner, just ignore them!
+- `*(-|_)dev(-|_)*`: development branches for the collaborators, just ignore them!
 - `archived`: old version of "MusicHub"
 
 ## Contribution
