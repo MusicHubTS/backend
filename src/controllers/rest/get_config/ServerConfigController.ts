@@ -5,11 +5,11 @@ import { ProjectConfig } from 'typings';
 @Controller('/')
 export class ServerConfigController {
   @Constant('project')
-    projectConfig: { default: ProjectConfig };
+    projectConfig: ProjectConfig;
 
   @Get('/')
   @Returns(200, String).ContentType('application/json; charset=utf-8')
   get() {
-    return JSON.stringify(this.projectConfig.default);
+    return JSON.stringify(this.projectConfig);
   }
 }
