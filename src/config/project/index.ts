@@ -66,6 +66,28 @@ function standardize(cfg: ProjectConfig): ProjectConfig {
   return standardized;
 }
 
+function parseRootAddress(addr: string): ({
+  httpPort: string | boolean,
+  httpsPort: string | boolean
+}) {
+  if (addr.slice(0, 7) === 'http://') {
+    return {
+      httpPort: addr.slice(7),
+      httpsPort: false
+    };
+  } else if (addr.slice(0, 8) === 'https://') {
+    return {
+      httpPort: false,
+      httpsPort: addr.slice(8)
+    };
+  } else {
+    return {
+      httpPort: false,
+      httpsPort: false
+    };
+  }
+}
+
 let cfg: ProjectConfig;
 try {
   cfg = YAML.parse(readFileSync('./config.yml', { encoding: 'utf8' }));
@@ -79,4 +101,9 @@ $log.debug(JSON.stringify(cfg, undefined, 2)); // original config, unless parsin
 $log.debug('Standardized configuration:');
 $log.debug(JSON.stringify(standardized, undefined, 2)); // standardized form
 
-export { parseResourcePath, standardize, cfg as projectConfig };
+export {
+  parseResourcePath,
+  parseRootAddress,
+  standardize,
+  cfg as projectConfig
+};

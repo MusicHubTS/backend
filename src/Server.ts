@@ -10,13 +10,18 @@ import cors from 'cors';
 import '@tsed/ajv';
 import '@tsed/swagger';
 import { config } from './config';
+import { parseRootAddress } from './config/project';
 import * as rest from './controllers/rest';
+
+let { httpPort, httpsPort } = parseRootAddress(config.project.server.root);
+httpPort = process.env.PORT || httpPort || '8083';
+httpsPort = process.env.HTTPS_PORT || httpsPort || false;
 
 @Configuration({
   ...config,
   acceptMimes: ['application/json'],
-  httpPort: process.env.PORT || 8083,
-  httpsPort: false, // CHANGE
+  httpPort: httpPort,
+  httpsPort: httpsPort,
   componentsScan: false,
   mount: {
     '/rest': [...Object.values(rest)]
