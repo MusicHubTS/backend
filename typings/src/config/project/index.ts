@@ -19,7 +19,6 @@ export interface ProjectConfig {
   server: {
     owner: string;
     root: string;
-    cdn: string | Record<string, string>;
   };
   songs: {
     prefix: string;

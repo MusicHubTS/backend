@@ -3,8 +3,7 @@ import { SONG_PIECE_KEYS } from 'typings';
 export const DEFAULT_CONFIG = {
   server: {
     owner: 'Owner',
-    root: 'http://localhost:8083',
-    cdn: 'jsdelivr'
+    root: 'http://localhost:8083'
   },
   songs: {
     prefix: '/public/songs',
