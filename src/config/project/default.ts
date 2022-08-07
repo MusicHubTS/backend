@@ -1,4 +1,4 @@
-import { SONG_PIECE_KEYS } from 'typings';
+export const SONG_PIECE_KEYS = ['name', 'artist', 'url', 'cover', 'lrc'];
 
 export const DEFAULT_CONFIG = {
   server: {

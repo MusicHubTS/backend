@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { $log } from '@tsed/logger';
 import { merge } from 'lodash';
 import YAML from 'yaml';
-import { ProjectConfig } from 'typings';
+import type { ProjectConfig } from 'typings';
 import { DEFAULT_CONFIG, DEFAULT_SONG_PIECE, VALID_RESOURCE_URL_SCHEMA } from './default';
 import path from 'path';
 

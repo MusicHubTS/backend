@@ -1,6 +1,6 @@
 import { Controller, Constant } from '@tsed/di';
 import { Get, Returns } from '@tsed/schema';
-import { ProjectConfig } from 'typings';
+import type { ProjectConfig } from 'typings';
 
 @Controller('/')
 export class ServerConfigController {
