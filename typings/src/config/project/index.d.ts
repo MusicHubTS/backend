@@ -25,5 +25,3 @@ export interface ProjectConfig {
     pieces: SongPiece[];
   };
 }
-
-export const SONG_PIECE_KEYS = ['name', 'artist', 'url', 'cover', 'lrc'];
