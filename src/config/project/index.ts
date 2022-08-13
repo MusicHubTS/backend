@@ -5,51 +5,9 @@ import YAML from 'yaml';
 import type { ProjectConfig } from 'typings';
 import { DEFAULT_CONFIG, DEFAULT_SONG_PIECE, VALID_RESOURCE_URL_SCHEMA } from './default';
 import path from 'path';
+import { config } from '..';
 
-function isValidURL(s: string): boolean {
-  try {
-    new URL(s);
-  } catch (_) {
-    return false;
-  }
-
-  return true;
-}
-
-function isValidResourceURL(s: string): boolean {
-  if (!isValidURL(s)) {
-    return false;
-  }
-
-  return VALID_RESOURCE_URL_SCHEMA.includes(new URL(s).protocol);
-}
-
-function isAbsoluteResourcePath(s: string): boolean {
-  return (isValidURL(s) && isValidResourceURL(s)) || path.isAbsolute(s);
-}
-
-/**
- * Parse a resource path to acceptable one.
- * @param p the given path to be parsed
- * @param options custom options
- * @param options.prefix prefix for relative paths
- * @param options.suffix suffix for all paths
- */
-function parseResourcePath(p: string, options?: { prefix?: string; suffix?: string }): string {
-  let prefix = '',
-    suffix = '';
-  if (options !== undefined && options.prefix !== undefined) {
-    prefix = options.prefix;
-  }
-  if (options !== undefined && options.suffix !== undefined) {
-    suffix = options.suffix;
-  }
-  if (isAbsoluteResourcePath(p)) {
-    return path.join(p, suffix);
-  } else {
-    return path.join(prefix, p, suffix);
-  }
-}
+const projectRoot = path.resolve(__dirname, '../../../');
 
 function standardize(cfg: ProjectConfig): ProjectConfig {
   // Step 1: Merge with a rough framework
@@ -66,10 +24,91 @@ function standardize(cfg: ProjectConfig): ProjectConfig {
   return standardized;
 }
 
-function parseRootAddress(addr: string): ({
-  httpPort: string | boolean,
-  httpsPort: string | boolean
-}) {
+let cfg: ProjectConfig;
+try {
+  cfg = YAML.parse(readFileSync('./config.yml', { encoding: 'utf8' }));
+} catch (e) {
+  $log.warn('Failed to read YAML configurations from `./config.yml`.');
+  cfg = DEFAULT_CONFIG;
+}
+const standardized = standardize(cfg);
+
+function isValidURL(s: string): boolean {
+  try {
+    new URL(s);
+  } catch (_) {
+    return false;
+  }
+
+  return true;
+}
+
+function isValidNetworkResourceURL(s: string): boolean {
+  if (!isValidURL(s)) {
+    return false;
+  }
+
+  return VALID_RESOURCE_URL_SCHEMA.includes(new URL(s).protocol);
+}
+
+/**
+ * Validate if a string is a valid local resource URL.
+ * @note The string should have the schema `file:` explicitly.
+ * @param s The given string to be validated.
+ */
+function isValidLocalResourceURL(s: string): boolean {
+  if (!isValidURL(s)) {
+    return false;
+  }
+
+  return new URL(s).protocol === 'file:';
+}
+
+/**
+ * Parse a resource path to acceptable one.
+ * 
+ * We assume resource paths have only 3 valid types:
+ * 
+ * 1. Network absolute URLs, i.e. `http://localhost/foo/bar` (should be with *valid* schemas) or `/foo/bar` (can be regarded as another kind of relative URLs to root of the back-end server).
+ * 2. Filesystem absolute paths, i.e. `file:///foo/bar`.
+ * 3. Filesystem relative paths, i.e. `foo/bar` or `./foo/bar` (relative to root of the project).
+ * 
+ * @note For case #2, we need more implementations on it.
+ * @see `default.VALID_RESOURCE_URL_SCHEMA` for all valid schemas of network resource URLS.
+ * @param p The given path to be parsed.
+ * @throws `RangeError` if an invalid resource path is given.
+ */
+function parseResourcePath(p: string) {
+  // Case #1
+  if (isValidNetworkResourceURL(p)) {
+    return p;
+  } else if (path.isAbsolute(p)) {
+    return new URL(p, standardized.server.root).href;
+  }
+  
+  // Case #2
+  else if (isValidLocalResourceURL(p)) {
+    // should be handled appropriately
+    return p;
+  }
+  
+  // Case #3
+  else if (!isValidURL(p) && !path.isAbsolute(p)) {
+    return path.resolve(config.projectRoot, p);
+  }
+  
+  // Invalid
+  else {
+    throw RangeError('invalid resource path: ' + p);
+  }
+}
+
+
+
+function parseRootAddress(addr: string): {
+  httpPort: string | boolean;
+  httpsPort: string | boolean;
+} {
   if (addr.slice(0, 7) === 'http://') {
     return {
       httpPort: addr.slice(7),
@@ -88,22 +127,10 @@ function parseRootAddress(addr: string): ({
   }
 }
 
-let cfg: ProjectConfig;
-try {
-  cfg = YAML.parse(readFileSync('./config.yml', { encoding: 'utf8' }));
-} catch (e) {
-  $log.warn('Failed to read YAML configurations from `./config.yml`.');
-  cfg = DEFAULT_CONFIG;
-}
-const standardized = standardize(cfg);
+$log.debug('Project Root: ' + projectRoot);
 $log.debug('Configurations:');
 $log.debug(JSON.stringify(cfg, undefined, 2)); // original config, unless parsing has any error
 $log.debug('Standardized configuration:');
 $log.debug(JSON.stringify(standardized, undefined, 2)); // standardized form
 
-export {
-  parseResourcePath,
-  parseRootAddress,
-  standardize,
-  cfg as projectConfig
-};
+export { parseResourcePath, parseRootAddress, standardize, cfg as projectConfig, projectRoot };
