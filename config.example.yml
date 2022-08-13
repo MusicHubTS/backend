@@ -2,10 +2,9 @@ server:
   owner: Owner
   root: http://localhost:8083
 songs:
-  prefix: /public/songs/
   pieces:
     - name: 光るなら
       artist: Goose House
-      url: hikarunara.mp3
+      url: /public/songs/hikarunara.mp3
       cover:
-      lrc: hikarunara.lrc
+      lrc: /public/songs/hikarunara.lrc

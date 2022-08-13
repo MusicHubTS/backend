@@ -21,7 +21,6 @@ export interface ProjectConfig {
     root: string;
   };
   songs: {
-    prefix: string;
     pieces: SongPiece[];
   };
 }
