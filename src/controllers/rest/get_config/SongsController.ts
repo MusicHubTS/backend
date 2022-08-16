@@ -1,16 +1,15 @@
 import { Controller, Constant } from '@tsed/di';
 import { Get, Returns } from '@tsed/schema';
-import type { ProjectConfig, APlayerAudios } from 'typings';
+import type { ProjectConfig, PlayerAudios } from 'typings';
 import { parseResourcePath } from 'src/config/project';
 
-function parseSongs(songs: ProjectConfig['songs']): APlayerAudios {
-  const { prefix, pieces } = songs;
-  return pieces.map((p) => ({
+function parseSongs(songs: ProjectConfig['songs']): PlayerAudios {
+  return songs.pieces.map((p) => ({
     name: p.name,
     artist: typeof p.artist === 'string' ? p.artist : p.artist.join(','),
-    url: parseResourcePath(p.url, { prefix: prefix }),
-    cover: p.cover === null ? null : parseResourcePath(p.cover, { prefix: prefix }),
-    lrc: p.lrc === null ? null : parseResourcePath(p.lrc, { prefix: prefix })
+    url: parseResourcePath(p.url),
+    cover_art_url: p.cover === null ? null : parseResourcePath(p.cover),
+    lrc: p.lrc === null ? null : parseResourcePath(p.lrc)
   }));
 }
 
