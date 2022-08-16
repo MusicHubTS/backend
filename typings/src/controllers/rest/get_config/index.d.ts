@@ -1,4 +1,4 @@
-export interface APlayerAudio {
+export interface PlayerAudio {
   name: string;
   artist: string;
   url: string;
@@ -6,4 +6,4 @@ export interface APlayerAudio {
   lrc?: string | null;
 }
 
-export type APlayerAudios = APlayerAudio[];
+export type PlayerAudios = PlayerAudio[];
