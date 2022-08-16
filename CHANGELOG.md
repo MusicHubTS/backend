@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.2] - 2022-8-17
+
+### Breaking API changed
+
+- Remove `songs.prefix` field in project configurations.
+- Replace APlayer with AmplitudeJS.
+
+### Removed
+
+- Remove `songs.prefix` field in project configurations.
+
+### Changed
+
+- Fix some styling glitches.
+- Use `import type` to organize typings instead of `import`.
+- Rewrite `parseResourcePath()`.
+- Replace APlayer with AmplitudeJS.
+
 ## [0.5.1] - 2022-7-11
 
 ### Changed
@@ -92,17 +110,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Support playing local media.
 
+[0.5.2]: https://github.com/MusicHubTS/backend/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/MusicHubTS/backend/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/MusicHubTS/backend/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/MusicHubTS/backend/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/MusicHubTS/backend/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/MusicHubTS/backend/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/MusicHubTS/backend/releases/tag/v0.1.0
-
 [#5]: https://github.com/MusicHubTS/backend/issues/5
 [#3]: https://github.com/MusicHubTS/backend/issues/3
 [#2]: https://github.com/MusicHubTS/backend/issues/2
-
 [633313c]: https://github.com/MusicHubTS/backend/commit/633313c223f89ea7ae4b91afbd4198750f6ed979
 [ce44e8b]: https://github.com/MusicHubTS/backend/commit/ce44e8bfa078640e025ac9a61a228a4a54b844d6
 [6a9fda3]: https://github.com/MusicHubTS/backend/commit/6a9fda399856d5b4570738ba5a74fcd6a577cea8

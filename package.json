@@ -1,6 +1,6 @@
 {
   "name": "@musichub/backend",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Back-end of the powerful online & offline music player, written in TypeScript and Ts.Ed",
   "scripts": {
     "test": "npm run test:lint && npm run test:coverage",
